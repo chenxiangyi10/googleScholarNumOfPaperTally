@@ -2,6 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import urllib3
 import re
+import matplotlib.pyplot as plt
+
 urllib3.disable_warnings()
 
 def get_num_papers(topic, start_year, end_year):
@@ -27,5 +29,14 @@ def get_num_papers(topic, start_year, end_year):
   return results
 
 # Example usage
-results = get_num_papers('"machine learning"', 2010, 2023)
+topic = '"machine learning"'
+year_start = 2010
+year_end = 2023
+results = get_num_papers(topic, year_start, year_end)
 print(results)
+
+# Plot results
+plt.plot(list(results.keys()),list(results.values()))
+plt.title(topic)
+plt.xlabel("year")
+plt.ylabel("# of papers")
